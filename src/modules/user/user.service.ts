@@ -4,12 +4,12 @@ import { Injectable } from '@nestjs/common';
 export class UserService {
   users = [
     {
-      id: 1,
+      userId: 1,
       name: "Minh Nhat",
       pass: "mnhattt"
     },
     {
-      id: 2,
+      userId: 2,
       name: "Anh Khoa",
       pass: "mnhattt"
     }
@@ -20,6 +20,6 @@ export class UserService {
   }
 
   findById(id: number) {
-    return this.users.find(u => u.id === id)
+    return this.users.find(u => u.userId === id)
   }
 }
