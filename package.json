@@ -26,7 +26,8 @@
     "@nestjs/websockets": "^6.6.7",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
-    "rxjs": "^6.3.3"
+    "rxjs": "^6.3.3",
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@nestjs/testing": "^6.0.0",
