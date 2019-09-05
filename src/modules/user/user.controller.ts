@@ -20,8 +20,9 @@ export class UserController {
 
   @Get(':id')
   // @UseInterceptors(ErrorInterceptor)
-  getUserById(@Param() id) {
+  getUserById(@Param('id') id: string) {
+    const userId = parseInt(id)
     // throw new WsException('Missing entry id.');
-    return this.userService.findById(id)
+    return this.userService.findById(userId)
   }
 }

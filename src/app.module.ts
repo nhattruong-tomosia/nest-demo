@@ -2,7 +2,7 @@ import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { AuthenticationModule } from './modules/authentication/authentication.module';
 import { UserModule } from './modules/user/user.module';
 import { MessageModule } from './modules/message/message.module';
-import { LoggerMiddleware } from './middleware/logger.middleware'
+import { LoggerMiddleware } from './shared/middleware/logger.middleware'
 import { CustomloggerModule } from './shared/customlogger/customlogger.module'
 
 
