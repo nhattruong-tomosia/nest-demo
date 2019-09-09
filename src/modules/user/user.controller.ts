@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, HttpException, HttpStatus } from '@nestjs/common';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -13,5 +13,10 @@ export class UserController {
   @Get('id')
   getUserById(@Param() id) {
     return this.userService.findById(id)
+  }
+
+  @Get('error')
+  async error() {
+    throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
   }
 }

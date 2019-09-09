@@ -5,6 +5,7 @@ import { CustomloggerService } from '../shared/customlogger/customlogger.service
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
   constructor(private readonly logger: CustomloggerService) { }
+
   use(req: Request, res: Response, next: () => void) {
     this.logger.log('')
     this.logger.log(`${req.method} ${req.originalUrl}`, `request`)
