@@ -18,7 +18,7 @@ export class MessageGateway {
 
   @SubscribeMessage('send')
   sendMessage(client, data) {
-    // console.log(this.server)
+    this.server.emit('respone', data)
     // return { event: "respo,ne", data }
   }
 }

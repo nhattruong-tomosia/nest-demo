@@ -19,12 +19,13 @@ export class UserService {
       {
         userId: 2,
         name: "Anh Khoa",
-        pass: "mnhattt"
+        pass: "anhkhoa"
       }
     ]
   }
 
-  findAll() {
+  async findAll() {
+    await sleep(100)
     return this.users
   }
 
@@ -35,4 +36,8 @@ export class UserService {
   create(user: User) {
     this.users.push(user)
   }
+}
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

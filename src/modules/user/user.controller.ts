@@ -1,18 +1,29 @@
-import { Controller, Get, Param, HttpException, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Param, HttpException, HttpStatus, UseInterceptors } from '@nestjs/common';
 import { UserService } from './user.service';
+import { LoggingInterceptor } from '../../shared/interceptor/logger.interceptor';
+import { ErrorInterceptor } from '../../shared/interceptor/errors.interceptor';
+import { WsException } from '@nestjs/websockets';
+import { ResultTransform } from '../../shared/interceptor/resultTransform.interceptor';
 
-@Controller('user')
+@UseInterceptors(LoggingInterceptor)
+@Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) { }
 
+
   @Get()
+  @UseInterceptors(ResultTransform)
   getAllUser() {
     return this.userService.findAll()
   }
 
-  @Get('id')
-  getUserById(@Param() id) {
-    return this.userService.findById(id)
+
+  @Get(':id')
+  // @UseInterceptors(ErrorInterceptor)
+  getUserById(@Param('id') id: string) {
+    const userId = parseInt(id)
+    // throw new WsException('Missing entry id.');
+    return this.userService.findById(userId)
   }
 
   @Get('error')
