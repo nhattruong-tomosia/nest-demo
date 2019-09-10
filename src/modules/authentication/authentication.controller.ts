@@ -8,6 +8,13 @@ export class AuthenticationController {
 
   @Post('login')
   login(@Req() req: Request): Object {
+    this.authenticationService.login('khoa', '123');
+    return { success: 1 }
+  }
+
+  @Post('signup')
+  signUp(@Req() req: Request): Object {
+    this.authenticationService.signUp()
     return { success: 1 }
   }
 }
