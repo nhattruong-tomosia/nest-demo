@@ -4,10 +4,11 @@ import { UserModule } from './modules/user/user.module';
 import { MessageModule } from './modules/message/message.module';
 import { LoggerMiddleware } from './shared/middleware/logger.middleware'
 import { CustomloggerModule } from './shared/customlogger/customlogger.module'
+import { ResponseModule } from './shared/response/response.module';
 
 
 @Module({
-  imports: [AuthenticationModule, CustomloggerModule, UserModule, MessageModule],
+  imports: [AuthenticationModule, CustomloggerModule, UserModule, MessageModule, ResponseModule],
   controllers: [],
   providers: [],
 })

@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Param, HttpException, HttpStatus, UseInterceptors } from '@nestjs/common';
 import { UserService } from './user.service';
 import { LoggingInterceptor } from '../../shared/interceptor/logger.interceptor';
 import { ErrorInterceptor } from '../../shared/interceptor/errors.interceptor';
@@ -24,5 +24,10 @@ export class UserController {
     const userId = parseInt(id)
     // throw new WsException('Missing entry id.');
     return this.userService.findById(userId)
+  }
+
+  @Get('error')
+  async error() {
+    throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
   }
 }
