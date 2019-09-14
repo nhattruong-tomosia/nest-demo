@@ -4,19 +4,21 @@ import { LoggingInterceptor } from '../../shared/interceptor/logger.interceptor'
 import { ErrorInterceptor } from '../../shared/interceptor/errors.interceptor';
 import { WsException } from '@nestjs/websockets';
 import { ResultTransform } from '../../shared/interceptor/resultTransform.interceptor';
+import { AuthenticationService } from '../authentication/authentication.service';
 
 @UseInterceptors(LoggingInterceptor)
 @Controller('users')
 export class UserController {
-  constructor(private readonly userService: UserService) { }
-
+  constructor(
+    private readonly userService: UserService,
+    private readonly authenService: AuthenticationService) { }
 
   @Get()
   @UseInterceptors(ResultTransform)
   getAllUser() {
-    return this.userService.findAll()
+    return this.authenService.getAllUser()
+    // return this.userService.findAll()
   }
-
 
   @Get(':id')
   // @UseInterceptors(ErrorInterceptor)

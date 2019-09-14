@@ -2,8 +2,10 @@ import { Module, NestModule, MiddlewareConsumer, RequestMethod } from '@nestjs/c
 import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { UserMiddleware } from '../../shared/middleware/user.middleware';
+import { AuthenticationModule } from '../authentication/authentication.module';
 
 @Module({
+  imports: [AuthenticationModule],
   controllers: [UserController],
   providers: [UserService],
 })

@@ -4,7 +4,7 @@ import { Injectable, Inject } from '@nestjs/common';
 export class AuthenticationService {
   constructor(
     @Inject('IFirestoreService') private readonly firestoreService: IFirestoreService
-  ) {}
+  ) { }
 
   login(emailOrUsername: String, password: String) {
     return `${Math.floor(Math.random() * 10000)}${emailOrUsername}`
@@ -21,5 +21,8 @@ export class AuthenticationService {
     });
     console.log(setAda)
   }
-}
 
+  async getAllUser() {
+    const usersDoc = this.firestoreService.collection("users").doc('alovelace')
+    const users = await usersDoc.get()
+    return u

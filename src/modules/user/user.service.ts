@@ -36,8 +36,17 @@ export class UserService {
   create(user: User) {
     this.users.push(user)
   }
+
+  promote(userId, promoteService: IPromoteService) {
+    promoteService.promote(userId)
+  }
 }
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
+interface IPromoteService {
+  promote(id)
 }
