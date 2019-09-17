@@ -3,7 +3,7 @@ import * as winston from 'winston'
 // import * as path from 'path'
 
 @Injectable()
-export class CustomloggerService extends Logger {
+export class CustomLoggerService extends Logger {
   private logger: winston.Logger = winston.createLogger({
     format: winston.format.combine(
       winston.format.colorize(),

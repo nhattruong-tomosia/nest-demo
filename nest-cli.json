@@ -1,5 +1,15 @@
 {
   "language": "ts",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src"
+  "sourceRoot": "src",
+  "projects": {
+    "firestore-service": {
+      "root": "libs/firestore-service",
+      "sourceRoot": "libs/firestore-service/src"
+    },
+    "constant": {
+      "root": "libs/constant",
+      "sourceRoot": "libs/constant/src"
+    }
+  }
 }

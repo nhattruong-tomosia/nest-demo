@@ -1,43 +1,26 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
+import { InjectCollection, ICollectionReference } from '@app/firestore-service'
+import CONSTANT from '@app/constant'
 
-type User = {
-  userId: number,
-  name: string,
-  pass: string
-}
 @Injectable()
 export class UserService {
-  private readonly users: User[]
-
-  constructor() {
-    this.users = [
-      {
-        userId: 1,
-        name: "Minh Nhat",
-        pass: "mnhattt"
-      },
-      {
-        userId: 2,
-        name: "Anh Khoa",
-        pass: "anhkhoa"
-      }
-    ]
-  }
+  constructor(
+    @InjectCollection(CONSTANT.COLLECTION_USERS) private readonly userCollection: ICollectionReference,
+  ) {}
 
   async findAll() {
-    await sleep(100)
-    return this.users
-  }
-
-  findById(id: number) {
-    return this.users.find(u => u.userId === id)
+    const result = await this.userCollection.get()
+    if (!result.empty) {
+      const arr = result.docs.map((item) => ({
+        id: item.id,
+        ...item.data()
+      }))
+      return arr
+    }
+    return []
   }
 
   create(user: User) {
-    this.users.push(user)
+    return this.userCollection.doc().set(user)
   }
-}
-
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
 }
